@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_report_form_view" model="ir.ui.view">
+            <field name="name">purchase.order.report.form.view</field>
+            <field name="model">purchase.order.report</field>
+            <field name="arch" type="xml">
+                <form string="Laporan Pembelian">
+                    <group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="is_purchase_paid" />
+                            <field name="is_waiting_shipment" />
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="print_purchase_report" string="Print Report" class="oe_highlight"
+                                type="object"/>
+                        Or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+
+
+            </field>
+        </record>
+
+        <record id="action_purchase_report_wizard" model="ir.actions.act_window">
+            <field name="name">Laporan Pembelian</field>
+            <field name="res_model">purchase.order.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_purchase_report_wizard"
+                  name="Laporan Pembelian"
+                  action="action_purchase_report_wizard"
+                  parent="purchase.purchase_report" 
+                  sequence="1"/>
+
+        <menuitem id="purchase_report_action" 
+                name="Reports"
+                parent="purchase.purchase_report" 
+                sequence="99"
+                groups="purchase.group_purchase_manager" 
+                action="purchase.action_purchase_order_report_all"/>
+    </data>
+</odoo>
